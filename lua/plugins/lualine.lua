@@ -1,29 +1,41 @@
 local config = function()
-	-- LSP clients attached to buffer
-	-- local clients_lsp = function ()
-	-- 	local bufnr = vim.api.nvim_get_current_buf()
-	--
-	-- 	local clients = vim.lsp.buf_get_clients(bufnr)
-	-- 	if next(clients) == nil then
-	-- 		return ''
-	-- 	end
-	--
-	-- 	local c = {}
-	-- 	for _, client in pairs(clients) do
-	-- 		table.insert(c, client.name)
-	-- 	end
-	-- 	return '' .. table.concat(c, '')
-	-- end
+	local clients_lsp = function ()
+		local bufnr = vim.api.nvim_get_current_buf()
+		local clients = vim.lsp.buf_get_clients(bufnr)
+		if next(clients) == nil then
+			return ''
+		end
+		local c = {}
+		for _, client in pairs(clients) do
+			table.insert(c, client.name)
+		end
 
-	-- local fileformat = {
-	-- 	'fileformat',
-	-- 	icons_enabled = false,
-	-- }
+        -- Custom client name for some LSPs 
+        for i, v in ipairs(c) do
+            if v == 'lua_ls' then
+                c[i] = '󰢱 Lua'
+            elseif v == 'copilot' then
+                if vim.g.copilot_enabled then
+                    c[i] = ' Copilot'
+                else
+                    c[i] = ''
+                end
+            elseif v == 'clangd' then
+                c[i] = ' Clang'
+            end
+        end
+		return '' .. table.concat(c, ' ') .. ' '
+	end
 
-	local branch = {
+	--[[ local fileformat = {
+		'fileformat',
+		icons_enabled = false,
+	} ]]
+
+	--[[ local branch = {
 		'branch',
 		icon = ''
-	}
+	} ]]
 
 	local mode = {
 		'mode',
@@ -60,11 +72,11 @@ local config = function()
 		},
 		sections = {
 			lualine_a = { mode, },
-			lualine_b = { 'filename', 'diagnostics' },
-			lualine_c = { branch, 'diff' },
-			lualine_x = { 'filetype' },
+			lualine_b = { 'filename' },
+			lualine_c = { 'diff' },
+			lualine_x = { clients_lsp },
 			-- lualine_x = {'encoding', fileformat, 'filetype', clients_lsp },
-			lualine_y = {'progress'},
+			lualine_y = { 'progress' },
 			lualine_z = { location }
 		},
 		-- inactive_sections = {

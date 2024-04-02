@@ -1,5 +1,5 @@
 local config = function()
-	vim.keymap.set('i', '<C-CR>', 'copilot#Accept("\\<CR>")', {
+	vim.keymap.set('i', '<C-Tab>', 'copilot#Accept("\\<CR>")', {
 		expr = true,
 		replace_keycodes = false
 	})
@@ -10,11 +10,11 @@ local config = function()
 
 	local function toggleCopilot()
 		if vim.g.copilot_enabled == false then
-			print('Copilot enabled')
+			-- print('󰊤 Copilot enabled')
 			vim.g.copilot_enabled = true
 		else
 			vim.g.copilot_enabled = false
-			print('Copilot disabled')
+			-- print('󰊤 Copilot disabled')
 		end
 	end
 
