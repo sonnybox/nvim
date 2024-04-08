@@ -1,11 +1,17 @@
 -- set leader as space
 vim.g.mapleader = ' '
 
--- lsp keymaps
-require('general.lsp-keymaps')
+-- enable break indent
+vim.o.breakindent = true
 
--- plugin keymaps
-require('general.plugin-keymaps')
+-- keep one extra col on by default
+-- vim.o.signcolumn = 'yes'
+
+-- minimalize the gutter (it will auto grow)
+vim.o.numberwidth = 1
+
+-- maybe fix tsx indent
+vim.o.smartindent = false
 
 -- change tilde symbol to something better (none lol)
 vim.opt.fillchars = { eob = ' ' }
@@ -13,21 +19,26 @@ vim.opt.fillchars = { eob = ' ' }
 -- hide mode as we are using lualine
 vim.o.showmode = false
 
--- make the cmdheight 0 on startup
-vim.o.cmdheight = 0
+-- make the cmdheight 1 on startup
+vim.o.cmdheight = 1
 
--- disable netrw
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+-- enable mouse
+vim.o.mouse = 'a'
 
--- disable mouse
-vim.o.mouse = ''
+-- mouse scroll multiplier
+vim.o.mousescroll = 'ver:5'
+
+-- add a scroll offset
+vim.o.scrolloff = 30
 
 -- fix yank
-vim.o.clipboard = "unnamedplus"
+vim.o.clipboard = 'unnamedplus'
 
 -- enable numbered lines
 vim.o.number = true
+
+-- soft tab stop
+vim.o.softtabstop = 4
 
 -- the number of spaces to use for each step of indent
 vim.o.shiftwidth = 4
@@ -35,30 +46,29 @@ vim.o.shiftwidth = 4
 -- the number of spaces that a tab counts for
 vim.o.tabstop = 4
 
--- convert tabs to spaces 
+-- convert tabs to spaces
 vim.o.expandtab = true
 
--- disable line wrap
-vim.o.wrap = false
-
--- enable file history (undo)
-vim.o.undofile = true
-
--- number of changes logged in undo history
-vim.o.undolevels = 1024
+-- enable line wrap by default
+vim.o.wrap = true
 
 -- change end of line behavior for arrow keys
 vim.o.whichwrap = '<,>,[,]'
 
--- Diagnostic settings
-vim.diagnostic.config {
-	virtual_text = true,
-	signs = false,
-	underline = true,
-}
-
 -- Disable highlighting on search
 vim.o.hlsearch = false
 
--- Disable swap file
-vim.o.swapfile = false
+-- idk prime has this
+vim.o.incsearch = true
+
+-- increase update time
+vim.o.updatetime = 400
+
+-- keymap timeout time
+vim.o.timeoutlen = 400
+
+-- autocommands
+require('general.autocommands')
+
+-- main keymaps
+require('general.keymaps')

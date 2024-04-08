@@ -1,49 +1,56 @@
 local config = function()
+	-- Diagnostic settings
+	vim.diagnostic.config({
+		virtual_text = true,
+		signs = false,
+		underline = true,
+	})
+
 	local lsp = require('lspconfig')
 	local defaults = require('cmp_nvim_lsp').default_capabilities()
 
 	lsp.lua_ls.setup({
 		settings = {
 			Lua = {
-				diagnostics = {
-					globals = { 'vim' }
-				}
-			}
+				workspace = {
+					checkThirdParty = false,
+					library = vim.api.nvim_get_runtime_file('', true),
+				},
+				completion = {
+					callSnippet = 'Replace',
+				},
+			},
 		},
-		capabilities = defaults
+		capabilities = defaults,
 	})
 
-	lsp.tsserver.setup{}
-
-	lsp.tailwindcss.setup{}
-
-	lsp.cssls.setup({
-		capabilities = defaults
-	})
+	lsp.tsserver.setup({})
+	lsp.tailwindcss.setup({})
+	lsp.cssls.setup({ capabilities = defaults })
 end
 
 local mason = function()
-	require("mason").setup({
+	require('mason').setup({
 		ui = {
 			icons = {
 				package_installed = '',
 				package_pending = '',
-				package_uninstalled = ''
-			}
-		}
+				package_uninstalled = '',
+			},
+		},
 	})
 end
 
 local masonlsp = function()
 	require('mason-lspconfig').setup({
 		automatic_installation = false,
-		ensure_installed = { 'lua_ls', 'clangd', 'tsserver', 'tailwindcss', 'cssls', 'eslint', }
+		ensure_installed = { 'lua_ls', 'clangd', 'tsserver', 'tailwindcss', 'cssls' },
 	})
 end
 
 return {
 	{ 'williamboman/mason.nvim', config = mason },
 	{ 'williamboman/mason-lspconfig.nvim', config = masonlsp },
-	{ 'hrsh7th/cmp-nvim-lsp', event = { 'InsertEnter', 'CmdlineEnter' }},
-	{ 'neovim/nvim-lspconfig', config = config }
+	{ 'hrsh7th/cmp-nvim-lsp' },
+	{ 'neovim/nvim-lspconfig', config = config },
 }

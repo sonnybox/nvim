@@ -13,9 +13,10 @@ local config = function()
 				sumiInk4 = 'none'
 			},
 			theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
-	},
-	overrides = function(colors)
-		local theme = colors.theme
+	    },
+
+        overrides = function(colors)
+        local theme = colors.theme
 		return {
 			Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 },  -- add `blend = vim.o.pumblend` to enable transparency
 			PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
@@ -30,7 +31,6 @@ local config = function()
 	},
 })
 
-	-- setup must be called before loading
 	vim.cmd("colorscheme kanagawa")
 end
 

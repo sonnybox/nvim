@@ -1,4 +1,8 @@
 local config = function()
+	-- set keymaps
+	vim.keymap.set('t', '<esc>', '<c-\\><c-n>', { noremap = true })
+	vim.keymap.set('n', '<leader>j', ':ToggleTerm<CR>', { noremap = true })
+
 	require('toggleterm').setup({
 		-- size can be a number or function which is passed the current terminal
 		size = 5,
@@ -42,7 +46,7 @@ local config = function()
 			enabled = false,
 			name_formatter = function(term) --  term: Terminal
 				return term.name
-			end
+			end,
 		},
 	})
 end
