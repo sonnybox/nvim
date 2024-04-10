@@ -1,4 +1,4 @@
-Note: I wasn't kidding about using it. If you do end up using it, there are a couple of things to keep in mind.
+**Note:** I wasn't kidding about using it. If you do end up using it, there are a couple of things to keep in mind.
 1. All LSPs are configured manually.
 2. Install the following dependencies:
 ```shell

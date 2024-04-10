@@ -24,6 +24,17 @@ local config = function()
 		capabilities = defaults,
 	})
 
+	lsp.pyright.setup({
+		capabilities = defaults,
+		settings = {
+			python = {
+				analysis = {
+					autoSearchPaths = true,
+					typeCheckingMode = 'basic',
+				},
+			},
+		},
+	})
 	lsp.tsserver.setup({})
 	lsp.tailwindcss.setup({})
 	lsp.cssls.setup({ capabilities = defaults })
@@ -44,7 +55,14 @@ end
 local masonlsp = function()
 	require('mason-lspconfig').setup({
 		automatic_installation = false,
-		ensure_installed = { 'lua_ls', 'clangd', 'tsserver', 'tailwindcss', 'cssls' },
+		ensure_installed = {
+			'lua_ls',
+			'clangd',
+			'tsserver',
+			'tailwindcss',
+			'cssls',
+			'pyright',
+		},
 	})
 end
 

@@ -17,6 +17,8 @@ local config = function()
 				else
 					c[i] = ''
 				end
+			elseif v == 'tailwindcss' then
+				c[i] = '󱏿 Tailwind'
 			elseif v == 'clangd' then
 				c[i] = ' Clang'
 			end
@@ -48,7 +50,7 @@ local config = function()
 		options = {
 			icons_enabled = true,
 			theme = 'auto',
-			component_separators = { left = '', right = '' },
+			component_separators = { left = '', right = '' },
 			section_separators = { left = '', right = '' },
 			disabled_filetypes = {
 				statusline = {
@@ -69,11 +71,11 @@ local config = function()
 		},
 		sections = {
 			lualine_a = { mode },
-			lualine_b = { 'filename' },
-			lualine_c = { 'diff' },
-			lualine_x = { clients_lsp },
+			lualine_b = { 'filename', 'diff' },
+			lualine_c = {},
+			lualine_x = {},
 			-- lualine_x = {'encoding', fileformat, 'filetype', clients_lsp },
-			lualine_y = { 'progress' },
+			lualine_y = { clients_lsp },
 			lualine_z = { location },
 		},
 		-- inactive_sections = {
