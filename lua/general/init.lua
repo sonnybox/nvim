@@ -1,11 +1,17 @@
 -- set leader as space
 vim.g.mapleader = ' '
 
+-- idk prime has it
+vim.g.have_nerd_font = true
+
 -- enable break indent
 vim.o.breakindent = true
 
 -- keep one extra col on by default
 -- vim.o.signcolumn = 'yes'
+
+-- should be in copilot section but stuff happens
+vim.g.copilot_no_tab_map = true
 
 -- minimalize the gutter (it will auto grow)
 vim.o.numberwidth = 1

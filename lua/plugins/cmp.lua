@@ -13,7 +13,6 @@ local config = function()
 		else
 			fallback()
 		end
-
 	end
 
 	local select_up = function(fallback)
@@ -30,9 +29,7 @@ local config = function()
 	end
 
 	local select_abort = function(fallback)
-		if cmp.visible() then
-			cmp.close()
-		end
+		if cmp.visible() then cmp.close() end
 		fallback()
 	end
 
@@ -58,28 +55,26 @@ local config = function()
 
 	cmp.setup({
 		snippet = {
-			expand = function(args)
-				require('luasnip').lsp_expand(args.body)
-			end
+			expand = function(args) require('luasnip').lsp_expand(args.body) end,
 		},
 		mapping = {
 			['<down>'] = cmp.mapping({
-				i = select_down
+				i = select_down,
 			}),
 			['<up>'] = cmp.mapping({
-				i = select_up
+				i = select_up,
 			}),
 			['<left>'] = cmp.mapping({
-				i = select_abort
+				i = select_abort,
 			}),
 			['<right>'] = cmp.mapping({
-				i = select_abort
+				i = select_abort,
 			}),
 			['<s-tab>'] = cmp.mapping({
-				i = select_stab
+				i = select_stab,
 			}),
 			['<tab>'] = cmp.mapping({
-				i = select_tab
+				i = select_tab,
 			}),
 			['<cr>'] = cmp.mapping.confirm({ select = false }),
 		},
@@ -88,12 +83,11 @@ local config = function()
 			documentation = cmp.config.window.bordered(),
 		},
 		sources = cmp.config.sources({
-			{ name = 'copilot' },
-			{ name = 'path', max_item_count = 3 },
-			{ name = 'nvim_lsp', max_item_count = 5 },
-			{ name = 'buffer', max_item_count = 2 }
+			{ name = 'path', max_item_count = 5 },
+			{ name = 'nvim_lsp', max_item_count = 10 },
+			{ name = 'buffer', max_item_count = 3 },
 		}),
-		view = { docs = { auto_open = true } }
+		view = { docs = { auto_open = true } },
 	})
 
 	cmp.setup.cmdline({ '/', '?' }, {
@@ -114,7 +108,7 @@ local config = function()
 			end, { 'c' }),
 		}),
 		sources = {
-			{ name = 'buffer' }
+			{ name = 'buffer' },
 		},
 	})
 
@@ -134,19 +128,22 @@ local config = function()
 					fallback()
 				end
 			end, { 'c' }),
-
 		}),
 		sources = cmp.config.sources({
 			{ name = 'path' },
 			{ name = 'cmdline' },
 		}),
-		matching = { disallow_symbol_nonprefix_matching = false }
+		matching = { disallow_symbol_nonprefix_matching = false },
 	})
 end
 
 return {
-	{ 'L3MON4D3/LuaSnip', version = 'v2.*', build = 'make install_jsregexp', },
-	{ 'hrsh7th/nvim-cmp', event = { 'InsertEnter', 'CmdlineEnter' }, config = config },
+	{ 'L3MON4D3/LuaSnip', version = 'v2.*', build = 'make install_jsregexp' },
+	{
+		'hrsh7th/nvim-cmp',
+		event = { 'InsertEnter', 'CmdlineEnter' },
+		config = config,
+	},
 	{ 'hrsh7th/cmp-cmdline', event = { 'InsertEnter', 'CmdlineEnter' } },
 	{ 'hrsh7th/cmp-buffer', event = { 'InsertEnter', 'CmdlineEnter' } },
 	{ 'hrsh7th/cmp-path', event = { 'InsertEnter', 'CmdlineEnter' } },

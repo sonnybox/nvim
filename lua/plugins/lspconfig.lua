@@ -35,8 +35,18 @@ local config = function()
 			},
 		},
 	})
+
+	lsp.clangd.setup({
+		cmd = {
+			'clangd',
+			'--offset-encoding=utf-16',
+		},
+	})
+
 	lsp.tsserver.setup({})
+
 	lsp.tailwindcss.setup({})
+
 	lsp.cssls.setup({ capabilities = defaults })
 end
 

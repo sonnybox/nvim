@@ -33,6 +33,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 		map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
 		map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-		map('H', vim.lsp.buf.hover, 'Hover Documentation')
+		map('K', vim.lsp.buf.hover, 'Hover Documentation')
+		map('J', vim.diagnostic.open_float, 'Test')
+		map('gd', vim.lsp.buf.definition, '[G]o to [d]efinition')
 	end,
 })
