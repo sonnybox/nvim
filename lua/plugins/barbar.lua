@@ -2,10 +2,11 @@ local config = function()
 	local map = vim.api.nvim_set_keymap
 	local opts = { noremap = true, silent = true }
 
-	-- Move to previous/next
+	-- Window bindings
 	map('n', '<C-Tab>', '<Cmd>BufferPrevious<CR>', opts)
 	map('n', '<C-S-Tab>', '<Cmd>BufferNext<CR>', opts)
 	map('n', '<C-w>', '<Cmd>wq<CR>', opts)
+	map('n', '<C-q>', '<Cmd>qa!<CR>', opts)
 
 	require('barbar').setup({
 		auto_hide = 1,

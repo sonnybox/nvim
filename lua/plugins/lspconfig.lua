@@ -30,7 +30,7 @@ local config = function()
 			python = {
 				analysis = {
 					autoSearchPaths = true,
-					typeCheckingMode = 'basic',
+					typeCheckingMode = 'off',
 				},
 			},
 		},

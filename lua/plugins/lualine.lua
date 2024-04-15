@@ -11,7 +11,7 @@ local config = function()
 		for i, v in ipairs(c) do
 			if v == 'lua_ls' then
 				c[i] = '󰢱 Lua'
-			elseif v == 'copilot' then
+			elseif v == 'GitHub Copilot' then
 				if vim.g.copilot_enabled then
 					c[i] = ' Copilot'
 				else
@@ -71,7 +71,7 @@ local config = function()
 		},
 		sections = {
 			lualine_a = { mode },
-			lualine_b = { 'filename', 'diff' },
+			lualine_b = { 'filename', 'diff', 'diagnostics' },
 			lualine_c = {},
 			lualine_x = {},
 			-- lualine_x = {'encoding', fileformat, 'filetype', clients_lsp },
