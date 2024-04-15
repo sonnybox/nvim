@@ -12,23 +12,16 @@ local config = function()
 			palette = {
 				sumiInk4 = 'none',
 			},
-			theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
 		},
 
-		overrides = function(colors)
-			local theme = colors.theme
+		overrides = function()
 			return {
-				Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 }, -- add `blend = vim.o.pumblend` to enable transparency
-				PmenuSel = { fg = 'NONE', bg = theme.ui.bg_p2 },
-				PmenuSbar = { bg = theme.ui.bg_m1 },
-				PmenuThumb = { bg = theme.ui.bg_p2 },
+				Pmenu = { blend = vim.o.pumblend }, -- add `blend = vim.o.pumblend` to enable transparency
+				PmenuSbar = { blend = vim.o.pumblend },
+				PmenuThumb = { blend = vim.o.pumblend },
 			}
 		end,
 		theme = 'wave', -- Load "wave" theme when 'background' option is not set
-		background = { -- map the value of 'background' option to a theme
-			dark = 'wave', -- try "dragon" !
-			light = 'lotus',
-		},
 	})
 
 	vim.cmd('colorscheme kanagawa')
