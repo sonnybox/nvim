@@ -10,17 +10,19 @@ local config = function()
 		-- Custom client name for some LSPs
 		for i, v in ipairs(c) do
 			if v == 'lua_ls' then
-				c[i] = '󰢱 Lua'
+				c[i] = '󰢱 '
 			elseif v == 'GitHub Copilot' then
 				if vim.g.copilot_enabled then
-					c[i] = ' Copilot'
+					c[i] = ' '
 				else
-					c[i] = ''
+					c[i] = ' '
 				end
 			elseif v == 'tailwindcss' then
-				c[i] = '󱏿 Tailwind'
+				c[i] = '󱏿 '
 			elseif v == 'clangd' then
-				c[i] = ' Clang'
+				c[i] = ' '
+			elseif v == 'tsserver' then
+				c[i] = ' '
 			end
 		end
 		return '' .. table.concat(c, ' ') .. ' '
@@ -54,15 +56,15 @@ local config = function()
 			section_separators = { left = '', right = '' },
 			disabled_filetypes = {
 				statusline = {
-					'toggleterm',
-					'trouble',
-					'NvimTree',
+					-- 'toggleterm',
+					-- 'trouble',
+					-- 'NvimTree',
 				},
 				winbar = {},
 			},
 			ignore_focus = {},
 			always_divide_middle = true,
-			globalstatus = false,
+			globalstatus = true,
 			refresh = {
 				statusline = 1000,
 				tabline = 1000,
@@ -71,7 +73,7 @@ local config = function()
 		},
 		sections = {
 			lualine_a = { mode },
-			lualine_b = { 'filename', 'diff', 'diagnostics' },
+			lualine_b = { 'fileformat', 'diff', 'diagnostics' },
 			lualine_c = {},
 			lualine_x = {},
 			-- lualine_x = {'encoding', fileformat, 'filetype', clients_lsp },

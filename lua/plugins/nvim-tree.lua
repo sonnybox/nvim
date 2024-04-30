@@ -4,7 +4,12 @@ local config = function()
 	vim.g.loaded_netrwPlugin = 1
 
 	-- keybinds
-	vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', { noremap = true })
+	vim.keymap.set(
+		'n',
+		'<leader>e',
+		':NvimTreeToggle<CR>',
+		{ noremap = true, silent = true }
+	)
 
 	require('nvim-tree').setup({
 		sort = {

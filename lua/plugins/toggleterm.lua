@@ -1,7 +1,12 @@
 local config = function()
 	-- set keymaps
-	vim.keymap.set('t', '<esc>', '<c-\\><c-n>', { noremap = true })
-	vim.keymap.set('n', '<leader>j', ':ToggleTerm<CR>', { noremap = true })
+	vim.keymap.set(
+		't',
+		'<esc>',
+		'<c-\\><c-n>:ToggleTerm<CR>',
+		{ noremap = true }
+	)
+	vim.keymap.set('n', '<leader>j', ':ToggleTerm<CR>i', { noremap = true })
 
 	require('toggleterm').setup({
 		-- size can be a number or function which is passed the current terminal
@@ -15,13 +20,12 @@ local config = function()
 			-- NOTE: this is only a subset of values, any group placed here will be set for the terminal window split
 		},
 		shade_terminals = false, -- NOTE: this option takes priority over highlights specified so if you specify Normal highlights you should set this to false
-		shading_factor = '-30', -- the percentage by which to lighten terminal background, default: -30 (gets multiplied by -3 if background is light)
-		start_in_insert = true,
+		start_in_insert = false,
 		insert_mappings = true, -- whether or not the open mapping applies in insert mode
 		terminal_mappings = false, -- whether or not the open mapping applies in the opened terminals
 		persist_size = true,
 		persist_mode = true, -- if set to true (default) the previous terminal mode will be remembered
-		direction = 'horizontal',
+		direction = 'float',
 		close_on_exit = true, -- close the terminal window when the process exits
 		-- Change the default shell. Can be a string or a function returning a string
 		shell = vim.o.shell,
@@ -40,7 +44,7 @@ local config = function()
 			-- col = <value>,
 			-- winblend = 3,
 			-- zindex = <value>,
-			-- title_pos = 'left' | 'center' | 'right', position of the title of the floating window
+			title_pos = 'center',
 		},
 		winbar = {
 			enabled = false,

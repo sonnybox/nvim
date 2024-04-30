@@ -2,17 +2,19 @@ local config = function()
 	local map = vim.api.nvim_set_keymap
 	local opts = { noremap = true, silent = true }
 
-	-- Window bindings
-	map('n', '<C-Tab>', '<Cmd>BufferPrevious<CR>', opts)
-	map('n', '<C-S-Tab>', '<Cmd>BufferNext<CR>', opts)
-	map('n', '<C-w>', '<Cmd>wq<CR>', opts)
-	map('n', '<C-q>', '<Cmd>qa!<CR>', opts)
+	-- window bindings
+	map('n', '<A-Tab>', '<Cmd>BufferNext<CR>', opts)
+	map('n', '<A-S-Tab>', '<Cmd>BufferPrevious<CR>', opts)
+	map('n', '<A-w>', '<Cmd>BufferClose!<CR>', opts)
+	map('n', '<A-s>', '<Cmd>w<CR>', opts)
+	map('n', '<A-q>', '<Cmd>qa!<CR>', opts)
+	map('n', '<A-t>', '<Cmd>enew<CR>', opts)
 
 	require('barbar').setup({
-		auto_hide = 1,
-		sidebar_filetypes = {
-			NvimTree = true,
-		},
+		animation = true,
+		highlight_alternate = true,
+		highlight_visible = true,
+		no_name_title = 'Untitled',
 	})
 end
 

@@ -24,13 +24,31 @@ vim.keymap.set(
 	{ desc = 'Move focus to the upper window' }
 )
 
+-- with arrow keys
 vim.keymap.set(
 	'n',
-	'<leader>qf',
-	vim.diagnostic.setloclist,
-	{ desc = '[Q]uick[f]ix' }
+	'<C-left>',
+	'<C-w>h',
+	{ desc = 'Move focus to the left window' }
 )
-
+vim.keymap.set(
+	'n',
+	'<C-right>',
+	'<C-w>l',
+	{ desc = 'Move focus to the right window' }
+)
+vim.keymap.set(
+	'n',
+	'<C-down>',
+	'<C-w>j',
+	{ desc = 'Move focus to the lower window' }
+)
+vim.keymap.set(
+	'n',
+	'<C-up>',
+	'<C-w>k',
+	{ desc = 'Move focus to the upper window' }
+)
 -- toggle wrap (line)
 local toggle_wrap = function()
 	if vim.o.wrap then
@@ -39,5 +57,8 @@ local toggle_wrap = function()
 		vim.o.wrap = true
 	end
 end
-
 vim.keymap.set('n', '<leader>w', toggle_wrap, { desc = '[w]rap' })
+
+-- better new lines (below and above)
+vim.keymap.set('n', '<CR>', 'm`o<Esc>``')
+vim.keymap.set('n', '<S-CR>', 'm`O<Esc>``')

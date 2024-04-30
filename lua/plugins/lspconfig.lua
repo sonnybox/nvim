@@ -1,9 +1,16 @@
 local config = function()
 	-- Diagnostic settings
 	vim.diagnostic.config({
-		virtual_text = true,
-		signs = false,
+		signs = true,
 		underline = true,
+		update_in_insert = false,
+		virtual_text = false,
+		virtual_lines = true,
+		float = {
+			header = '  Diagnostics ',
+			border = 'rounded',
+			focusable = false,
+		},
 	})
 
 	local lsp = require('lspconfig')
@@ -43,7 +50,8 @@ local config = function()
 		},
 	})
 
-	lsp.tsserver.setup({})
+	lsp.tsserver.setup({ capabilities = defaults })
+	lsp.eslint.setup({})
 
 	lsp.tailwindcss.setup({})
 
@@ -72,6 +80,17 @@ local masonlsp = function()
 			'tailwindcss',
 			'cssls',
 			'pyright',
+			'eslint',
+		},
+	})
+end
+
+local masontools = function()
+	require('mason-tool-installer').setup({
+		ensure_installed = {
+			'prettier',
+			'stylua',
+			'clang-format',
 		},
 	})
 end
@@ -81,4 +100,5 @@ return {
 	{ 'williamboman/mason-lspconfig.nvim', config = masonlsp },
 	{ 'hrsh7th/cmp-nvim-lsp' },
 	{ 'neovim/nvim-lspconfig', config = config },
+	{ 'WhoIsSethDaniel/mason-tool-installer.nvim', config = masontools },
 }
