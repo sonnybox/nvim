@@ -82,7 +82,9 @@ local config = function()
 			completion = cmp.config.window.bordered(),
 			documentation = cmp.config.window.bordered(),
 		},
+
 		sources = cmp.config.sources({
+			{ name = 'luasnip', option = { use_show_condition = false } },
 			{ name = 'path', max_item_count = 5 },
 			{ name = 'nvim_lsp', max_item_count = 10 },
 			{ name = 'buffer', max_item_count = 3 },
@@ -150,8 +152,19 @@ local config = function()
 	})
 end
 
+local snippets = function() require('luasnip.loaders.from_vscode').lazy_load() end
+
 return {
-	{ 'L3MON4D3/LuaSnip', version = 'v2.*', build = 'make install_jsregexp' },
+	{
+		'L3MON4D3/LuaSnip',
+		version = 'v2.*',
+		build = 'make install_jsregexp',
+		config = snippets,
+		dependencies = {
+			'rafamadriz/friendly-snippets',
+			'saadparwaiz1/cmp_luasnip',
+		},
+	},
 	{
 		'hrsh7th/nvim-cmp',
 		event = { 'InsertEnter', 'CmdlineEnter' },

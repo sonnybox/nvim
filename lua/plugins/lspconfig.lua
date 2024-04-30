@@ -52,7 +52,7 @@ local config = function()
 
 	lsp.tsserver.setup({ capabilities = defaults })
 	lsp.eslint.setup({})
-
+	lsp.html.setup({ capabilities = defaults })
 	lsp.tailwindcss.setup({})
 
 	lsp.cssls.setup({ capabilities = defaults })
@@ -81,6 +81,7 @@ local masonlsp = function()
 			'cssls',
 			'pyright',
 			'eslint',
+			'html',
 		},
 	})
 end
