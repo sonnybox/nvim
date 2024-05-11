@@ -5,8 +5,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 	callback = function() vim.highlight.on_yank() end,
 })
 
--- fix hover style
-local enable_hover = false
 vim.lsp.handlers['textDocument/hover'] = function(_, result, ctx, config)
 	config = {
 		-- Use a sharp border with `FloatBorder` highlights
@@ -41,32 +39,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		if client and client.server_capabilities.documentHighlightProvider then
 			vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
 				buffer = event.buf,
-				callback = vim.lsp.buf.document_highlight,
-			})
-
-			vim.api.nvim_create_autocmd({ 'CursorHoldI' }, {
-				buffer = event.buf,
 				callback = function()
+					vim.lsp.buf.document_highlight()
 					local cmp = require('cmp')
-					if
-						vim.g.copilot_enabled == false
-						or vim.g.copilot_enabled == nil
-					then
-						enable_hover = true
-					end
-
-					if cmp.visible() then enable_hover = false end
-
-					if enable_hover then
-						-- vim.defer_fn(vim.lsp.buf.hover, 333)
-						vim.lsp.buf.hover()
+					if cmp.visible() == false or cmp.visible() == nil then
+						vim.diagnostic.open_float()
 					end
 				end,
-			})
-
-			vim.api.nvim_create_autocmd({ 'CursorHold' }, {
-				buffer = event.buf,
-				callback = function() vim.diagnostic.open_float() end,
 			})
 
 			vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
@@ -87,6 +66,29 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
 		map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 		map('gd', vim.lsp.buf.definition, '[G]o to [d]efinition')
-		map('K', vim.diagnostic.open_float, '[G]o to [D]eclaration')
+		map('K', vim.lsp.buf.hover, 'Hover')
+	end,
+})
+
+-- Alacritty
+local alacrittyAutoGroup =
+	vim.api.nvim_create_augroup('alacritty', { clear = true })
+
+vim.api.nvim_create_autocmd('VimEnter', {
+	group = alacrittyAutoGroup,
+	callback = function()
+		vim.fn.system(
+			"alacritty msg --socket $ALACRITTY_SOCKET config -w $ALACRITTY_WINDOW_ID options 'window.padding.x=0' 'window.padding.y=0'"
+		)
+	end,
+})
+
+vim.api.nvim_create_autocmd('VimLeavePre', {
+	group = alacrittyAutoGroup,
+	callback = function()
+		vim.fn.jobstart(
+			'alacritty msg --socket $ALACRITTY_SOCKET config -w $ALACRITTY_WINDOW_ID -r',
+			{ detach = true }
+		)
 	end,
 })

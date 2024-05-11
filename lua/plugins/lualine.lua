@@ -7,93 +7,80 @@ local config = function()
 			table.insert(c, client.name)
 		end
 
-		-- Custom client name for some LSPs
+		-- custom client names
+		local replacements = {
+			['lua_ls'] = '󰢱 ',
+			['GitHub Copilot'] = vim.g.copilot_enabled and ' ' or ' ',
+			['tailwindcss'] = '󱏿 ',
+			['clangd'] = ' ',
+			['tsserver'] = ' ',
+		}
+
 		for i, v in ipairs(c) do
-			if v == 'lua_ls' then
-				c[i] = '󰢱 '
-			elseif v == 'GitHub Copilot' then
-				if vim.g.copilot_enabled then
-					c[i] = ' '
-				else
-					c[i] = ' '
-				end
-			elseif v == 'tailwindcss' then
-				c[i] = '󱏿 '
-			elseif v == 'clangd' then
-				c[i] = ' '
-			elseif v == 'tsserver' then
-				c[i] = ' '
-			end
+			c[i] = replacements[v] or v
 		end
-		return '' .. table.concat(c, ' ') .. ' '
+		return 'LSP ' .. table.concat(c, '')
 	end
 
-	--[[ local fileformat = {
-		'fileformat',
-		icons_enabled = false,
-	} ]]
-
-	--[[ local branch = {
-		'branch',
-		icon = ''
-	} ]]
+	local lsp = {
+		clients_lsp,
+		color = { fg = '#aaacee' },
+	}
 
 	local mode = {
 		'mode',
-		separator = { left = '' },
+		color = { fg = '#99cc66' },
+		icons_enabled = true,
+		icon = '',
 	}
 
 	local location = {
 		'location',
-		separator = { right = '' },
+		padding = 1,
 	}
 
+	local filename = {
+		'filename',
+		color = { fg = '#ee9966' },
+		icons_enabled = true,
+		icon = '󱝁',
+	}
+
+	local date = {
+		'os.date(" %a, %b %d  %l:%M %p")',
+		color = { fg = '#bfbfbb' },
+	}
+
+	local search = {
+		'searchcount',
+		color = { fg = '#6969ce' },
+		icons_enabled = true,
+		icon = '',
+	}
+
+	local custom_theme = require('lualine.themes.kanagawa')
+	local clear = 'none'
+	custom_theme.normal.c.bg = clear
 	require('lualine').setup({
 		options = {
 			icons_enabled = true,
-			theme = 'auto',
-			component_separators = { left = '', right = '' },
-			section_separators = { left = '', right = '' },
-			disabled_filetypes = {
-				statusline = {
-					-- 'toggleterm',
-					-- 'trouble',
-					-- 'NvimTree',
-				},
-				winbar = {},
-			},
-			ignore_focus = {},
-			always_divide_middle = true,
+			theme = custom_theme,
+			component_separators = { left = '', right = '' },
+			section_separators = { left = '*', right = '*' },
 			globalstatus = true,
-			refresh = {
-				statusline = 1000,
-				tabline = 1000,
-				winbar = 1000,
-			},
+			refresh = { statusline = 1000 },
 		},
 		sections = {
-			lualine_a = { mode },
-			lualine_b = { 'fileformat', 'diff', 'diagnostics' },
-			lualine_c = {},
-			lualine_x = {},
-			-- lualine_x = {'encoding', fileformat, 'filetype', clients_lsp },
-			lualine_y = { clients_lsp },
-			lualine_z = { location },
+			lualine_a = {},
+			lualine_b = {},
+			lualine_c = { mode, filename, 'diagnostics' },
+			lualine_x = { search, lsp, date },
+			lualine_y = {},
+			lualine_z = {},
 		},
-		-- inactive_sections = {
-		--   lualine_a = {},
-		--   lualine_b = {},
-		--   lualine_c = {'filename'},
-		--   lualine_x = {'location'},
-		--   lualine_y = {},
-		--   lualine_z = {}
-		-- },
-		-- tabline = {},
-		-- winbar = { lualine_a = { 'filename' }},
-		inactive_winbar = {},
-		extensions = {},
 	})
 end
+
 return {
 	'nvim-lualine/lualine.nvim',
 	dependencies = { 'nvim-tree/nvim-web-devicons' },

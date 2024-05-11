@@ -2,12 +2,23 @@ local config = function()
 	-- disable netrw
 	vim.g.loaded_netrw = 1
 	vim.g.loaded_netrwPlugin = 1
+	vim.g.nvim_tree_visible = false
+
+	function toggle_nvim_tree()
+		if vim.g.nvim_tree_visible == false then
+			vim.g.nvim_tree_visible = true
+			vim.cmd(':NvimTreeFocus')
+		else
+			vim.cmd(':NvimTreeClose')
+			vim.g.nvim_tree_visible = false
+		end
+	end
 
 	-- keybinds
 	vim.keymap.set(
 		'n',
 		'<leader>e',
-		':NvimTreeToggle<CR>',
+		toggle_nvim_tree,
 		{ noremap = true, silent = true }
 	)
 

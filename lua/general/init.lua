@@ -1,57 +1,53 @@
--- set leader as space
-vim.g.mapleader = ' '
+--[ [ ------ ] ]--
+-- *  Leader  * --
+--] ] ------ ] ]--
 
--- keep one extra col on by default
-vim.opt.signcolumn = 'yes'
+vim.g.mapleader = ' ' -- set leader as space
 
--- minimalize the gutter (it will auto grow)
-vim.opt.numberwidth = 1
+--[ [ ------ ] ]--
+-- *  Visual  * --
+--] ] ------ ] ]--
 
--- change tilde symbol to something better (none lol)
-vim.opt.fillchars = { eob = ' ' }
+vim.opt.signcolumn = 'yes' -- keep one extra col on by default
+vim.opt.cursorline = true -- enable cursor line highlighting
+vim.opt.cursorlineopt = 'both' -- cursor line options
+-- vim.opt.numberwidth = 1 -- minimalize the gutter (it will auto grow)
+vim.opt.fillchars = { eob = ' ' } -- change tilde symbol to something better (none lol)
+vim.opt.showmode = false -- hide mode as we are using lualine
+vim.opt.cmdheight = 1 -- make the cmdheight 1 on startup
 
--- hide mode as we are using lualine
-vim.opt.showmode = false
+--[ [ ----- ] ]--
+-- *  Misc.  * --
+--] ] ----- ] ]--
 
--- make the cmdheight 1 on startup
-vim.opt.cmdheight = 1
+vim.opt.incsearch = false -- highlight matching partial searches
+vim.opt.updatetime = 333 -- increase update time
+vim.opt.timeoutlen = 1000 -- keymap timeout time
+vim.opt.mouse = nil -- enable mouse
+vim.opt.scrolloff = 5 -- add a scroll offset
+vim.opt.clipboard = 'unnamedplus' -- yank to clipboard
+vim.opt.number = true -- enable numbered lines
+vim.opt.whichwrap:append('<>[]hl') -- change arrow key wrap behavior
+vim.opt.wrap = true -- enable line wrap by default
+vim.opt.hlsearch = false -- disable highlight stuck on after search
+vim.opt.ignorecase = true -- ignore case in various places
+vim.opt.smartcase = true -- if ignorecase results in only uppercase results
+vim.opt.termguicolors = true -- enable true color support
 
--- enable mouse
-vim.opt.mouse = nil
+--[ [ --------- ] ]--
+-- *  Indenting  * --
+--] ] --------- ] ]--
 
--- add a scroll offset
-vim.opt.scrolloff = 10
+local indent = 4 -- the number of characters for indenting
+vim.opt.shiftwidth = indent -- number of spaces for indenting
+vim.opt.tabstop = indent -- number of spaces tab counts for
+vim.opt.softtabstop = indent -- number of spaces during editing operations
+vim.opt.expandtab = true -- converts tab to spaces
+vim.opt.smartindent = true -- do smart indenting on a new line
 
--- fix yank
-vim.opt.clipboard = 'unnamedplus'
+--[ [ --------- ] ]--
+-- *  More Conf  * --
+--] ] --------- ] ]--
 
--- enable numbered lines
-vim.opt.number = true
-
--- the number of characters for indenting
-local indent = 4
-vim.opt.shiftwidth = indent
-vim.opt.tabstop = indent
-vim.opt.softtabstop = indent
-vim.opt.autoindent = true
-
--- enable line wrap by default
-vim.opt.wrap = true
-
--- disable highlight stuck on after search
-vim.opt.hlsearch = false
-
--- highlight matching partial searches
-vim.opt.incsearch = false
-
--- increase update time
-vim.opt.updatetime = 333
-
--- keymap timeout time
-vim.opt.timeoutlen = 1000
-
--- autocommands
-require('general.autocommands')
-
--- main keymaps
-require('general.keymaps')
+require('general.autocommands') -- autocommands
+require('general.keymaps') -- extra keymaps

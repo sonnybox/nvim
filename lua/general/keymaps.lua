@@ -60,5 +60,5 @@ end
 vim.keymap.set('n', '<leader>w', toggle_wrap, { desc = '[w]rap' })
 
 -- better new lines (below and above)
-vim.keymap.set('n', '<CR>', 'm`o<Esc>``')
-vim.keymap.set('n', '<S-CR>', 'm`O<Esc>``')
+vim.keymap.set('n', '<S-CR>', 'm`o<Esc>``')
+vim.keymap.set('n', '<CR>', 'm`O<Esc>``')

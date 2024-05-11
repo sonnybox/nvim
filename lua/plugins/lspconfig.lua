@@ -1,13 +1,13 @@
 local config = function()
 	-- Diagnostic settings
 	vim.diagnostic.config({
-		signs = true,
+		signs = false,
 		underline = true,
 		update_in_insert = false,
-		virtual_text = false,
-		virtual_lines = true,
+		virtual_text = true,
+		virtual_lines = false,
 		float = {
-			header = '  Diagnostics ',
+			header = '  Diagnostics',
 			border = 'rounded',
 			focusable = false,
 		},

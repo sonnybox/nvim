@@ -8,17 +8,18 @@ local config = function()
 	})
 
 	require('conform').setup({
+		log_level = vim.log.levels.DEBUG,
 		formatters_by_ft = {
 			lua = { 'stylua' },
 			c = { 'clang-format' },
-			javascript = { 'prettier' },
+			javascript = { 'prettierd' },
 			typescript = { 'prettier' },
 			typescriptreact = { 'prettier' },
 			javascriptreact = { 'prettier' },
 		},
 		format_on_save = {
-			timeout_ms = 50,
-			lsp_fallback = true,
+			timeout_ms = 500,
+			lsp_fallback = false,
 		},
 	})
 end
