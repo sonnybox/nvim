@@ -1,6 +1,6 @@
 local config = function()
 	local clients_lsp = function()
-		local clients = vim.lsp.get_active_clients()
+		local clients = vim.lsp.get_clients()
 		if next(clients) == nil then return '' end
 		local c = {}
 		for _, client in pairs(clients) do
@@ -14,8 +14,10 @@ local config = function()
 			['tailwindcss'] = '󱏿 ',
 			['clangd'] = ' ',
 			['tsserver'] = ' ',
+			['pyright'] = ' ',
+			['bashls'] = ' ',
+			['eslint'] = '󰱺 ',
 		}
-
 		for i, v in ipairs(c) do
 			c[i] = replacements[v] or v
 		end
@@ -25,6 +27,8 @@ local config = function()
 	local lsp = {
 		clients_lsp,
 		color = { fg = '#aaacee' },
+		component_separators = { left = '', right = '' },
+		padding = { right = 0, left = 0 },
 	}
 
 	local mode = {
@@ -32,11 +36,18 @@ local config = function()
 		color = { fg = '#99cc66' },
 		icons_enabled = true,
 		icon = '',
+		component_separators = { left = '', right = '' },
 	}
 
 	local location = {
 		'location',
-		padding = 1,
+		padding = { right = 1 },
+	}
+
+	local progress = {
+		'progress',
+		component_separators = { left = '', right = '' },
+		padding = { right = 1, left = 1 },
 	}
 
 	local filename = {
@@ -47,8 +58,9 @@ local config = function()
 	}
 
 	local date = {
-		'os.date(" %a, %b %d  %l:%M %p")',
-		color = { fg = '#bfbfbb' },
+		'os.date("%a, %b %d  %l:%M %p ")',
+		color = { fg = '#accccb' },
+		component_separators = { right = '', left = '' },
 	}
 
 	local search = {
@@ -66,15 +78,18 @@ local config = function()
 			icons_enabled = true,
 			theme = custom_theme,
 			component_separators = { left = '', right = '' },
-			section_separators = { left = '*', right = '*' },
+			section_separators = { left = '', right = '' },
 			globalstatus = true,
 			refresh = { statusline = 1000 },
 		},
 		sections = {
 			lualine_a = {},
 			lualine_b = {},
-			lualine_c = { mode, filename, 'diagnostics' },
-			lualine_x = { search, lsp, date },
+			lualine_c = {
+				mode,--[[  filename, ]]
+				'diagnostics',
+			},
+			lualine_x = { search, lsp, date, progress, location },
 			lualine_y = {},
 			lualine_z = {},
 		},

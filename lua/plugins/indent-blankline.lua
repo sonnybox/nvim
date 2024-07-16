@@ -1,7 +1,5 @@
 local opts = {
-    whitespace = { remove_blankline_trail = true },
-    scope = { enabled = false },
-    indent = { char = '│' }
+	scope = { enabled = false },
 }
 
 return { 'lukas-reineke/indent-blankline.nvim', main = 'ibl', opts = opts }

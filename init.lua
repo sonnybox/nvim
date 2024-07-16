@@ -1,7 +1,6 @@
 -- Ensure a undo directory exists
--- The 493 is the octal representation of 755 permissions
 local undos_dir = os.getenv('HOME') .. '/.nvim-undo'
-if not vim.loop.fs_stat(undos_dir) then vim.loop.fs_mkdir(undos_dir, 493) end
+if not vim.uv.fs_stat(undos_dir) then vim.uv.fs_mkdir(undos_dir, 493) end
 
 -- Neovim file management
 vim.opt.undodir = undos_dir
@@ -11,7 +10,7 @@ vim.opt.swapfile = false
 
 -- Ensure Lazy is installed
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
 	vim.fn.system({
 		'git',
 		'clone',
@@ -21,7 +20,7 @@ if not vim.loop.fs_stat(lazypath) then
 		lazypath,
 	})
 end
-vim.opt.rtp:prepend(lazypath)
+vim.opt.runtimepath:prepend(lazypath)
 
 -- Additional configurations
 local ok, err

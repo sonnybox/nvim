@@ -16,9 +16,9 @@ local config = function()
 				sumiInk2 = 'none',
 				sumiInk3 = 'none',
 				sumiInk4 = 'none',
-				sumiInk5 = '#11111f', -- highlight color
+				sumiInk5 = '#33333f', -- highlight color
 				sumiInk6 = '#666666', -- indent line color
-				waveBlue1 = '#11111f', -- selection color
+				waveBlue1 = '#2f2f50', -- selection color
 				waveBlue2 = '#11111f', -- text update color
 			},
 		},
@@ -26,4 +26,4 @@ local config = function()
 	})
 	vim.cmd.colorscheme('kanagawa')
 end
-return { 'rebelot/kanagawa.nvim', config = config }
+return { 'rebelot/kanagawa.nvim', config = config, lazy = false }

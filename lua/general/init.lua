@@ -8,13 +8,12 @@ vim.g.mapleader = ' ' -- set leader as space
 -- *  Visual  * --
 --] ] ------ ] ]--
 
-vim.opt.signcolumn = 'yes' -- keep one extra col on by default
+vim.opt.signcolumn = 'auto' -- dynamically adjust sign column
 vim.opt.cursorline = true -- enable cursor line highlighting
 vim.opt.cursorlineopt = 'both' -- cursor line options
--- vim.opt.numberwidth = 1 -- minimalize the gutter (it will auto grow)
 vim.opt.fillchars = { eob = ' ' } -- change tilde symbol to something better (none lol)
 vim.opt.showmode = false -- hide mode as we are using lualine
-vim.opt.cmdheight = 1 -- make the cmdheight 1 on startup
+vim.opt.cmdheight = 1 -- set the command height
 
 --[ [ ----- ] ]--
 -- *  Misc.  * --
@@ -23,7 +22,7 @@ vim.opt.cmdheight = 1 -- make the cmdheight 1 on startup
 vim.opt.incsearch = false -- highlight matching partial searches
 vim.opt.updatetime = 333 -- increase update time
 vim.opt.timeoutlen = 1000 -- keymap timeout time
-vim.opt.mouse = nil -- enable mouse
+vim.opt.mouse = '' -- disable mouse
 vim.opt.scrolloff = 5 -- add a scroll offset
 vim.opt.clipboard = 'unnamedplus' -- yank to clipboard
 vim.opt.number = true -- enable numbered lines
@@ -49,5 +48,5 @@ vim.opt.smartindent = true -- do smart indenting on a new line
 -- *  More Conf  * --
 --] ] --------- ] ]--
 
-require('general.autocommands') -- autocommands
+-- require('general.alacritty') -- autocommands
 require('general.keymaps') -- extra keymaps

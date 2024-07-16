@@ -50,15 +50,20 @@ vim.keymap.set(
 	{ desc = 'Move focus to the upper window' }
 )
 -- toggle wrap (line)
-local toggle_wrap = function()
-	if vim.o.wrap then
-		vim.o.wrap = false
-	else
-		vim.o.wrap = true
-	end
-end
+local toggle_wrap = function() vim.o.wrap = not vim.o.wrap end
 vim.keymap.set('n', '<leader>w', toggle_wrap, { desc = '[w]rap' })
 
+-- undo in insert mode
+vim.keymap.set('i', '<C-u>', '<C-g>u<C-u>', { desc = 'Undo in insert mode' })
+
+-- redo in insert mode
+vim.keymap.set(
+	'i',
+	'<C-r>',
+	'<esc><C-r>a',
+	{ desc = 'Redo in insert mode', noremap = true }
+)
+
 -- better new lines (below and above)
-vim.keymap.set('n', '<S-CR>', 'm`o<Esc>``')
-vim.keymap.set('n', '<CR>', 'm`O<Esc>``')
+vim.keymap.set('n', '<CR>', 'm`o<Esc>``')
+vim.keymap.set('n', '<S-CR>', 'm`O<Esc>``')
