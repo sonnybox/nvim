@@ -1,25 +1,25 @@
 -- make changing windows easier
 vim.keymap.set(
 	'n',
-	'<C-h>',
+	'<A-h>',
 	'<C-w>h',
 	{ desc = 'Move focus to the left window' }
 )
 vim.keymap.set(
 	'n',
-	'<C-l>',
+	'<A-l>',
 	'<C-w>l',
 	{ desc = 'Move focus to the right window' }
 )
 vim.keymap.set(
 	'n',
-	'<C-j>',
+	'<A-j>',
 	'<C-w>j',
 	{ desc = 'Move focus to the lower window' }
 )
 vim.keymap.set(
 	'n',
-	'<C-k>',
+	'<A-k>',
 	'<C-w>k',
 	{ desc = 'Move focus to the upper window' }
 )

@@ -12,6 +12,7 @@ local config = function()
 			['lua_ls'] = '󰢱 ',
 			['GitHub Copilot'] = vim.g.copilot_enabled and ' ' or ' ',
 			['tailwindcss'] = '󱏿 ',
+			['cssls'] = ' ',
 			['clangd'] = ' ',
 			['tsserver'] = ' ',
 			['pyright'] = ' ',

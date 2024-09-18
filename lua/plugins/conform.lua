@@ -23,7 +23,6 @@ local config = function()
 			javascriptreact = { 'prettierd' },
 			json = { 'prettierd' },
 			html = { 'prettierd' },
-			css = { 'prettierd' },
 		},
 		format_on_save = {
 			timeout_ms = 500,

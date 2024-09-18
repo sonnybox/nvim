@@ -27,7 +27,7 @@ vim.opt.scrolloff = 5 -- add a scroll offset
 vim.opt.clipboard = 'unnamedplus' -- yank to clipboard
 vim.opt.number = true -- enable numbered lines
 vim.opt.whichwrap:append('<>[]hl') -- change arrow key wrap behavior
-vim.opt.wrap = true -- enable line wrap by default
+vim.opt.wrap = false -- disable line wrap by default
 vim.opt.hlsearch = false -- disable highlight stuck on after search
 vim.opt.ignorecase = true -- ignore case in various places
 vim.opt.smartcase = true -- if ignorecase results in only uppercase results
@@ -48,5 +48,4 @@ vim.opt.smartindent = true -- do smart indenting on a new line
 -- *  More Conf  * --
 --] ] --------- ] ]--
 
--- require('general.alacritty') -- autocommands
 require('general.keymaps') -- extra keymaps

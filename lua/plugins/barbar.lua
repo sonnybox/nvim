@@ -3,8 +3,8 @@ local config = function()
 	local opts = { noremap = true, silent = true }
 
 	-- window bindings
-	map('n', '<A-Tab>', '<Cmd>BufferNext<CR>', opts)
-	map('n', '<A-S-Tab>', '<Cmd>BufferPrevious<CR>', opts)
+	map('n', '<A-S-H>', '<Cmd>BufferNext<CR>', opts)
+	map('n', '<A-S-L>', '<Cmd>BufferPrevious<CR>', opts)
 	map('n', '<A-w>', '<Cmd>BufferClose!<CR>', opts)
 	map('n', '<A-s>', '<Cmd>w<CR>', opts)
 	map('n', '<A-q>', '<Cmd>qa!<CR>', opts)
@@ -34,7 +34,7 @@ local config = function()
 			separator = { right = '', left = '▎' },
 			separator_at_end = '▎',
 			-- Valid options to display the buffer index and -number are `true`, 'superscript' and 'subscript'
-			buffer_index = 'superscript',
+			-- buffer_index = 'superscript',
 		},
 		-- Sets the maximum padding width with which to surround each tab
 		maximum_padding = 1,
