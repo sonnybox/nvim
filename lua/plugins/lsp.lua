@@ -5,6 +5,8 @@ local masontools = function()
             'lua_ls',
             'basedpyright',
             'ruff',
+            'bash-language-server',
+            'fish-lsp',
         },
     })
 end
@@ -38,6 +40,8 @@ local masonlsp = function()
                 },
             },
         },
+        bashls = {},
+        fish_lsp = {},
     }
 
     for name, config in pairs(servers) do

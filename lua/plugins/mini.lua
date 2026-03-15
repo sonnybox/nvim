@@ -14,7 +14,7 @@ local config = function()
     require('mini.icons').setup()
     require('mini.files').setup()
     -- require('mini.surround').setup()
-    require('mini.jump').setup()
+    -- require('mini.jump').setup()
     require('mini.pick').setup({
         window = { config = centered },
     })
@@ -51,7 +51,7 @@ local config = function()
         INFO = { duration = 3000 },
     })
 
-    require('mini.ai').setup({ silent = true })
+    -- require('mini.ai').setup({ silent = true })
 
     vim.keymap.set(
         'n',
